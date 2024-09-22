@@ -94,6 +94,7 @@ img {
   gap: 40px;
 }
 .nav-link {
+  position: relative;
   display: block;
   font-weight: 500;
   font-size: 16px;
@@ -103,16 +104,8 @@ img {
   padding: 24px 0;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.nav-link:hover,
-.nav-link:focus {
-  color: #404bbf;
-}
-.current {
-  position: relative;
-  color: #404bbf;
-}
 
-.current::after {
+.nav-link::after {
   content: "";
   position: absolute;
   left: 0;
@@ -121,6 +114,14 @@ img {
   height: 4px;
   border-radius: 2px;
   background-color: #404bbf;
+
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link:focus::after,
+.nav-link.current::after {
+  opacity: 1;
 }
 .contacts {
   font-style: normal;
@@ -141,8 +142,11 @@ img {
   color: #434455;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.nav-link:hover,
+.nav-link:focus,
 .contacts-link:hover,
-.contacts-link:focus {
+.contacts-link:focus,
+.nav-link.current {
   color: #404bbf;
 }
 /* ======= /HEADER STYLES ======= */
@@ -276,13 +280,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   gap: 24px;
 }
 .social-list-item {
   width: 40px;
   height: 40px;
-  display: flex;
 }
 .social-list-link {
   display: flex;
@@ -350,7 +352,6 @@ img {
   overflow: hidden;
 }
 .portfolio-overlay-text {
-  font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
@@ -379,7 +380,11 @@ img {
   background-color: #2e2f42;
   padding: 100px 0;
 }
-.footer-left {
+.footer-container {
+  display: flex;
+  align-items: baseline;
+}
+.footer-left-block {
   margin-right: 120px;
 }
 .footer-logo {
@@ -397,19 +402,7 @@ img {
   color: #f4f4fd;
 }
 
-.footer {
-  background-color: #2e2f42;
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-.footer-container {
-  display: flex;
-  align-items: baseline;
-}
-
-.footer-item-text {
-  font-family: "Roboto", sans-serif;
+.footer-social-text {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
@@ -423,7 +416,6 @@ img {
   gap: 16px;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
 }
 
 .footer-list-item {
@@ -435,16 +427,12 @@ img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 12px;
   background: #4d5ae5;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 0;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  fill: #f4f4fd;
 }
-
 .footer-list-link:hover,
 .footer-list-link:focus {
   background: #31d0aa;
